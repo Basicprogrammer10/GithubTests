@@ -6,10 +6,6 @@ jobs:
     runs-on: ubuntu-latest
     if: github.repository_owner == 'Basicprogrammer10'
     steps:
-    - name: Upload
-      uses: actions/download-artifact@v2
-      with:
-          name: package
     - uses: actions/setup-node@v1
       with:
         node-version: 14.x
