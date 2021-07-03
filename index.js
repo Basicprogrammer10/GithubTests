@@ -14,7 +14,7 @@ function getRandomName() {
     'Billie',
     'Billy'
   ]
-  return undefined///items[Math.floor(Math.random()*items.length)]
+  return items[Math.floor(Math.random()*items.length)]
 }
 
 console.log(`Hello, ${getRandomName()}`)
