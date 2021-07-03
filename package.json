@@ -1,0 +1,22 @@
+{
+  "name": "githubtests",
+  "version": "1.0.0",
+  "description": "test",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Basicprogrammer10/GithubTests.git"
+  },
+  "author": "Basicprogrammer10",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Basicprogrammer10/GithubTests/issues"
+  },
+  "homepage": "https://github.com/Basicprogrammer10/GithubTests#readme",
+  "devDependencies": {
+    "jest": "^27.0.6"
+  }
+}
