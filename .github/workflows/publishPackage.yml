@@ -1,0 +1,22 @@
+name: Publish Package
+on: push
+jobs:
+  publish:
+    name: "Publish to GitHub Packages"
+    needs: [package]
+    runs-on: ubuntu-latest
+    if: github.repository_owner == 'Basicprogrammer10'
+    steps:
+    - name: Upload
+      uses: actions/download-artifact@v2
+      with:
+          name: package
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+        registry-url: https://npm.pkg.github.com/
+        scope: "@Basicprogrammer10"
+    - run: echo "registry=https://npm.pkg.github.com/@Basicprogrammer10" >> .npmrc
+    - run: npm publish $(ls *.tgz)
+      env:
+        NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
