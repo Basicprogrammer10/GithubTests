@@ -1,5 +1,5 @@
 {
-  "name": "githubtests",
+  "name": "@basicprogrammer10/githubtests",
   "version": "1.0.0",
   "description": "test",
   "main": "index.js",
@@ -18,5 +18,8 @@
   "homepage": "https://github.com/Basicprogrammer10/GithubTests#readme",
   "devDependencies": {
     "jest": "^27.0.6"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
   }
 }
