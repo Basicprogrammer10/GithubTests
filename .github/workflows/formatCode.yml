@@ -18,5 +18,5 @@ jobs:
           git config --global user.name 'Mr. Code Format'
           git config --global user.email 'codeformat@connorcode.com'
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
-          git commit -am "Automated Code Formatting"
+          git commit -am "💎 Automated Code Formatting"
           git push origin HEAD:master
