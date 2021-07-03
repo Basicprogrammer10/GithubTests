@@ -1,24 +1,24 @@
 function getRandomName() {
   let items = [
-    'Jeff',
-    'Jeb',
-    'Bill',
-    'Bob',
-    'Buddy',
-    'James',
-    'Jim',
-    'Jimmy',
-    'Joe',
-    'Joey',
-    'Johnny',
-    'Billie',
-    'Billy'
-  ]
-  return items[Math.floor(Math.random()*items.length)]
+    "Jeff",
+    "Jeb",
+    "Bill",
+    "Bob",
+    "Buddy",
+    "James",
+    "Jim",
+    "Jimmy",
+    "Joe",
+    "Joey",
+    "Johnny",
+    "Billie",
+    "Billy",
+  ];
+  return items[Math.floor(Math.random() * items.length)];
 }
 
-console.log(`Hello, ${getRandomName()}`)
+console.log(`Hello, ${getRandomName()}`);
 
 module.exports = {
-  getRandomName: getRandomName
-}
+  getRandomName: getRandomName,
+};
