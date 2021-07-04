@@ -1,1 +1,53 @@
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'Release Name'
+        required: true
+      version:
+        description: 'Version to release'
+        required: true
+        default: '0.0.0'
+      minify:
+        description: 'Minify code for release'
+        required: true
+        default: 'true'
+jobs:
+  Release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          ref: ${{ github.head_ref }}
+          
+      - name: Minify
+        if: github.event.inputs.minify == 'true'
+        run: npx minify-all .
 
+      - name: Compress
+        run: tar -cvzf files.tar.gz .
+        
+      - name: Debug
+        run: ls
+        
+      - name: Release
+        uses: actions/create-release@v1
+        id: create_release
+        with:
+          draft: false
+          prerelease: false
+          release_name: ${{ github.event.inputs.name }}
+          tag_name: ${{ github.event.inputs.version }}
+          body_path: CHANGELOG.md
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          
+      - name: UploadFiles
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./files.tar.gz
+          asset_name: ${{ github.event.inputs.name }} - ${{ github.event.inputs.version }}.tar.gz
+          asset_content_type: application/gzip
