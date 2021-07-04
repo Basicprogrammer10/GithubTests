@@ -17,9 +17,13 @@
   },
   "homepage": "https://github.com/Basicprogrammer10/GithubTests#readme",
   "devDependencies": {
+    "cypress": "^7.6.0",
     "jest": "^27.0.6"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
   }
 }
