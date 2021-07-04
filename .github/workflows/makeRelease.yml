@@ -1,3 +1,4 @@
+name: Make Release
 on:
   workflow_dispatch:
     inputs:
@@ -22,7 +23,10 @@ jobs:
           
       - name: Minify
         if: github.event.inputs.minify == 'true'
-        run: npx minify-all .
+        run: |
+          npm install uglifyjs
+          npm install minify-all
+          npx minify-all .
 
       - name: Compress
         run: tar -cvzf files.tar.gz .
