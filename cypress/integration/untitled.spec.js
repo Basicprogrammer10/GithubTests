@@ -1,7 +1,7 @@
 describe('Test', () => {
   it('should have a passing test', () => {
     cy.visit('localhost:3000')
-    expect(true).to.equal(false)
+    expect(true).to.equal(true)
   })
 })
 
