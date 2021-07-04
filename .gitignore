@@ -2,4 +2,4 @@ node_modules
 cypress/fixtures
 cypress/support
 cypress/plugins
-cypress.json
+cypress/videos
