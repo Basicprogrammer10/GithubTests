@@ -30,9 +30,8 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: "12"
-      - run: rm package-lock.json
-      - run: yarn install
-      - run: yarn test
+      - run: npm install
+      - run: npx jest
 
   runUiTests:
     name: Run UI tests with Cypress
