@@ -24,6 +24,7 @@
     "registry": "https://npm.pkg.github.com/"
   },
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "typescript": "^3.9.10"
   }
 }
