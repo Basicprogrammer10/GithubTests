@@ -1,4 +1,4 @@
-function getRandomName() {
+function getRandomName(): string {
     let items = [
         'Jeff',
         'Jeb',
@@ -16,8 +16,9 @@ function getRandomName() {
     ];
     return items[Math.floor(Math.random() * items.length)];
 }
+
 console.log(`Hello, ${getRandomName()}`);
+
 module.exports = {
     getRandomName: getRandomName
 };
-//# sourceMappingURL=index.js.map
