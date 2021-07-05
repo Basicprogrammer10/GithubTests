@@ -3,3 +3,5 @@ cypress/fixtures
 cypress/support
 cypress/plugins
 cypress/videos
+/index.js
+/index.js.map
