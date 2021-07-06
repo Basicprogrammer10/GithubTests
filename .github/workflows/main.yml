@@ -54,7 +54,7 @@ jobs:
       - uses: actions/checkout@v2
       
       - name: Install Cargo
-      - run: curl https://sh.rustup.rs -sSf | sh
+        run: curl https://sh.rustup.rs -sSf | sh
       
       - name: Run Unit Tests
         working-directory: ./test_test
