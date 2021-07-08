@@ -2,7 +2,7 @@ name: CI
 on: [push, pull_request]
 jobs:
   format:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - uses: actions/checkout@v1
         with:
@@ -23,7 +23,7 @@ jobs:
 
   runTests:
     name: Run Unit Tests with Jest
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - uses: actions/checkout@v2
       - name: Setup Node.js
@@ -36,7 +36,7 @@ jobs:
 
   runUiTests:
     name: Run UI tests with Cypress
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - uses: actions/checkout@v2
       - name: Setup Node.js
@@ -49,7 +49,7 @@ jobs:
 
   runRustTests:
     name: Run Rust Unit Tests
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - uses: actions/checkout@v2
       
