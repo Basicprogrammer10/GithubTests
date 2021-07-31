@@ -46,9 +46,23 @@ jobs:
       - run: node server.js --debug &
       - run: npx cypress run
 
+  compileRust:
+    name: Compile Rust
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Install Cargo
+        run: curl https://sh.rustup.rs -sSf | sh -s -- -y
+      
+      - name: Run Unit Tests
+        working-directory: ./test_test
+        run: cargo build
+
   runRustTests:
     name: Run Rust Unit Tests
     runs-on: ubuntu-latest
+    needs: compileRust
     steps:
       - uses: actions/checkout@v2
       
