@@ -52,9 +52,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       
-      - name: Install Cargo
-        run: curl https://sh.rustup.rs -sSf | sh -s -- -y
-      
       - name: Run Unit Tests
         working-directory: ./test_test
         run: cargo build
