@@ -1,4 +1,4 @@
-name: Make Release
+name: Commit History
 on:
   workflow_dispatch:
 jobs:
