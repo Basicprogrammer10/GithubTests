@@ -42,7 +42,7 @@ fn main() {
         .get("username")
         .unwrap_or_else(|| "dailyCommit".to_string());
     let file_name = cfg.get("file").unwrap_or_else(|| "nose".to_string());
-    let email = cfg.get("email").unwrap_or_else(|| "".to_string());
+    let email = cfg.get("email").unwrap_or_else(|| "connor@connorcode.com".to_string());
 
     // Modify Files //
     let mut file = OpenOptions::new()
