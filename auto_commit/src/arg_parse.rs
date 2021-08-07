@@ -12,7 +12,7 @@
 /// // Check that the value is "world"
 /// assert_eq!("world", world);
 /// ```
-pub fn get_arg_value<'a>(raw_args: &'a Vec<String>, arg: &'a str) -> Option<&'a str> {
+pub fn get_arg_value<'a>(raw_args: &'a [String], arg: &'a str) -> Option<&'a str> {
     // Make a new vec of references to the args
     let mut args: Vec<&String> = Vec::new();
     for i in raw_args.iter() {
@@ -33,9 +33,9 @@ pub fn get_arg_value<'a>(raw_args: &'a Vec<String>, arg: &'a str) -> Option<&'a 
 
     // Return the value if it does not start with - (--)
     let ret = args[value + 1];
-    if ret.starts_with("-") {
+    if ret.starts_with('-') {
         return None;
     }
 
-    return Some(args[value + 1]);
+    Some(args[value + 1])
 }

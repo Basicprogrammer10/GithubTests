@@ -7,4 +7,5 @@ edition = "2018"
 
 [dependencies]
 simple_config_parser = "0.1.6"
-chrono = "0.4.19"
+chrono = { version = "0.4", features = ["unstable-locales"] }
+rand = "0.8"

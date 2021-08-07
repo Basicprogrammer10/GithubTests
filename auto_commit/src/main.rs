@@ -1,8 +1,7 @@
 use simple_config_parser::config::Config;
-use std::fs::OpenOptions;
-use chrono::prelude::*;
-use std::io::Write;
 use std::env;
+use std::fs::OpenOptions;
+use std::io::Write;
 
 extern crate chrono;
 
@@ -13,9 +12,7 @@ pub static VERSION: &str = "0.0.1";
 
 fn main() {
     println!("[*] Starting Auto Commit V{}", VERSION);
-
     let args: Vec<String> = env::args().collect();
-    // let mut debug = args.iter().any(|i| i == "--debug");
 
     // Get github token
     // If no token is provided, PANIC!
@@ -24,27 +21,54 @@ fn main() {
         None => panic!("No token defined, Use --token <value>"),
     };
 
-    // Load config
+    // Get github repo
+    let repo = match arg_parse::get_arg_value(&args, "--repo") {
+        Some(v) => v.to_string(),
+        None => panic!("No repo defined, Use --repo <value>"),
+    };
+
+    // Load config //
     let cfg = Config::new(Some("config.ini"));
 
     // Get values from config file
-    let message = cfg.get("message").unwrap_or("Auto-Commit: #$1".to_string());
-    let username = cfg.get("username").unwrap_or("dailyCommit".to_string());
-    let file_name = cfg.get("file").unwrap_or("nose".to_string());
-    let email = cfg.get("email").unwrap_or("".to_string());
+    let message = cfg
+        .get("message")
+        .unwrap_or_else(|| "Auto-Commit: #$1".to_string());
+    let content = cfg
+        .get("content")
+        .unwrap_or_else(|| "Nose - $3".to_string());
+    let username = cfg
+        .get("username")
+        .unwrap_or_else(|| "dailyCommit".to_string());
+    let file_name = cfg.get("file").unwrap_or_else(|| "nose".to_string());
+    let email = cfg.get("email").unwrap_or_else(|| "".to_string());
 
-    // Modify File and Send Commit
+    // Modify Files //
     let mut file = OpenOptions::new()
         .write(true)
         .create(true)
         .open(common::remove_quotes(file_name))
         .expect("Error opening file");
 
-    writeln!(file, "{}", replace_values(message));
-}
+    writeln!(file, "{}", common::replace_values(content)).expect("Error writing to file");
 
-pub fn replace_values(message: String) -> String {
-    let mut message = message.clone();
-    message = message.replace("$2", Utc::today().format("%Y-%m-%d"));
-    message
+    // Setup Git //
+
+    // Set UserName
+    common::run(&["git", "config", "--global", "user.name", &username]);
+
+    // Set Email
+    common::run(&["git", "config", "--global", "user.email", &email]);
+
+    // Set repo (Repo , Token)
+    common::run(&[&format!(
+        "git remote set-url origin https://x-access-token:{}@github.com/{}",
+        token, repo
+    )]);
+
+    // Commit
+    common::run(&["git", "commit", "-am", &message]);
+
+    // Push
+    common::run(&["git", "push", "origin", "HEAD:master"]);
 }
