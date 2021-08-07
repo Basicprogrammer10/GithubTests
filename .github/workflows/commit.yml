@@ -11,4 +11,4 @@ jobs:
       - name: run
         working-directory: ./auto_commit
         run: |
-          cargo run -- --token ${{ secrets.GITHUB_TOKEN }} --repo ${{ github.repository }}
+          cargo run -- --token ${{ secrets.GITHUB_TOKEN }} --repo ${{ github.repository }} --debug
