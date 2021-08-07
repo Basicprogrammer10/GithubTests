@@ -7,3 +7,5 @@ cypress/videos
 /index.js.map
 
 /test_test/target
+
+/auto_commit/target
