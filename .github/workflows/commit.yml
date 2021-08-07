@@ -9,5 +9,6 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
       - name: run
+        working-directory: ./auto_commit
         run: |
           cargo run -- --token ${{ secrets.GITHUB_TOKEN }} --repo ${{ github.repository }}
