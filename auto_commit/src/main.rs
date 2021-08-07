@@ -13,6 +13,7 @@ pub static VERSION: &str = "0.0.1";
 fn main() {
     println!("[*] Starting Auto Commit V{}", VERSION);
     let args: Vec<String> = env::args().collect();
+    let debug = args.iter().any(|i| i == "--debug");
 
     // Get github token
     // If no token is provided, PANIC!
@@ -55,20 +56,25 @@ fn main() {
     // Setup Git //
 
     // Set UserName
+    if debug { println!("[*] Setting Username: {}", username); }
     common::run(&["git", "config", "--global", "user.name", &username]);
 
     // Set Email
+    if debug { println!("[*] Setting Email: {}", email); }
     common::run(&["git", "config", "--global", "user.email", &email]);
 
     // Set repo (Repo , Token)
+    if debug { println!("[*] Setting Repo / Token: ({} / haha not telling ya)", repo); }
     common::run(&[&format!(
         "git remote set-url origin https://x-access-token:{}@github.com/{}",
         token, repo
     )]);
 
     // Commit
+    if debug { println!("[*] Committing"); }
     common::run(&["git", "commit", "-am", &message]);
 
     // Push
+    if debug { println!("[*] Pushing"); }
     common::run(&["git", "push", "origin", "HEAD:master"]);
 }
