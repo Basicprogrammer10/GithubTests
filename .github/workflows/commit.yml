@@ -9,5 +9,5 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
       - name: run
-      run: |
-        cargo run -- --token ${{ secrets.GITHUB_TOKEN }} --repo ${{ github.repository }}
+        run: |
+          cargo run -- --token ${{ secrets.GITHUB_TOKEN }} --repo ${{ github.repository }}
