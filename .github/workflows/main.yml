@@ -67,7 +67,7 @@ jobs:
         working-directory: ./test_test
         run: cargo test
   fossaCheck:
-    runs-on: ubuntu-linux
+    runs-on: ubuntu-latest
     name: Fossa Check
     steps:
       - uses: actions/checkout@v2
