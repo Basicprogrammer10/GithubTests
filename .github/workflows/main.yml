@@ -66,3 +66,11 @@ jobs:
       - name: Run Unit Tests
         working-directory: ./test_test
         run: cargo test
+  fossaCheck:
+    runs-on: ubuntu-linux
+    name: Fossa Check
+    steps:
+      - uses: actions/checkout@v2
+      - run: "curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/fossas/fossa-cli/master/install.sh | bash"
+      - run: fossa init
+      - run: FOSSA_API_KEY=7bff3c71cc4832d41199fbadc691958d fossa analyze
