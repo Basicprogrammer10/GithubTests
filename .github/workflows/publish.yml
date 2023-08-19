@@ -11,3 +11,7 @@ jobs:
 
       - name: Deploy with ampersand
         uses: Basicprogrammer10/ampersand@v0.0.1-beta
+        with:
+          ampersand_server: "https://connorcode.com"
+          ampersand_token: "B*9+2*+)n][B^<ru:c9[$DA1R>97XKVwX9=y!q@NAvVdFJnvdG4T?j<s)(ht>B%B"
+          ampersand_project: "connorcode"
