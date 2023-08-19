@@ -1,4 +1,4 @@
-name: Commit History
+name: Publish
 
 on:
   workflow_dispatch:
