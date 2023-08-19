@@ -1,0 +1,13 @@
+name: Commit History
+
+on:
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Deploy with ampersand
+        uses: Basicprogrammer10/ampersand@v0.0.1-beta
